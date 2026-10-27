@@ -1,0 +1,215 @@
+# Write Test Cases – Theory
+
+## 1. Introduction to Test Cases
+
+A **test case** is a set of conditions, steps, test data, and expected results used to verify whether a software feature works correctly.
+
+A good test case helps the tester determine whether the application behaves as expected for different inputs and situations.
+
+A test case normally contains:
+
+- Test Case ID
+- Test Case Title
+- Preconditions
+- Test Steps
+- Test Data
+- Expected Result
+- Actual Result
+- Status (Pass/Fail)
+
+---
+
+## 2. Positive Test Scenarios
+
+A **positive test scenario** verifies that the application works correctly when valid input is provided.
+
+### Example
+
+For a login page:
+
+**Test Data:**
+- Username: `user@gmail.com`
+- Password: `Password123`
+
+**Expected Result:**  
+The user should be successfully logged in and redirected to the dashboard.
+
+Positive testing confirms that the application performs the expected operation with valid data.
+
+---
+
+## 3. Negative Test Scenarios
+
+A **negative test scenario** verifies how the application behaves when invalid, incorrect, or unexpected input is provided.
+
+### Example
+
+For a login page:
+
+**Test Data:**
+- Username: `user@gmail.com`
+- Password: `wrong123`
+
+**Expected Result:**  
+The application should display an appropriate error message and should not allow the user to log in.
+
+Negative testing helps verify that the application handles errors properly.
+
+---
+
+# 4. Equivalence Partitioning (EP)
+
+**Equivalence Partitioning** is a black-box testing technique in which input data is divided into different groups called **equivalence classes**.
+
+Each group contains values that are expected to behave similarly. Instead of testing every possible value, we select representative values from each group.
+
+### Example
+
+Suppose an age field accepts values from **18 to 60**.
+
+The equivalence partitions are:
+
+| Partition | Values | Valid/Invalid |
+|---|---|---|
+| Below 18 | 0–17 | Invalid |
+| 18–60 | 18–60 | Valid |
+| Above 60 | 61+ | Invalid |
+
+Representative test values can be:
+
+- `17` → Invalid
+- `30` → Valid
+- `61` → Invalid
+
+EP reduces the number of test cases while still providing good test coverage.
+
+---
+
+# 5. Boundary Value Analysis (BVA)
+
+**Boundary Value Analysis** is a testing technique that focuses on the values at the boundaries of an input range.
+
+Most input-related defects occur around minimum and maximum limits, so boundary values are important to test.
+
+### Example
+
+Suppose an age field accepts values from **18 to 60**.
+
+Important boundary values are:
+
+- 17 → Just below minimum
+- 18 → Minimum
+- 19 → Just above minimum
+- 59 → Just below maximum
+- 60 → Maximum
+- 61 → Just above maximum
+
+These values help identify boundary-related defects.
+
+---
+
+# 6. Difference Between EP and BVA
+
+| Equivalence Partitioning | Boundary Value Analysis |
+|---|---|
+| Divides input into groups/classes. | Focuses on boundary values. |
+| Tests representative values from each group. | Tests values around minimum and maximum limits. |
+| Reduces the number of test cases. | Helps find boundary-related defects. |
+| Example: 18–60 is one valid partition. | Example: 17, 18, 19, 59, 60, 61. |
+
+Both techniques are often used together to achieve better test coverage.
+
+---
+
+# 7. Test Case Execution Status
+
+After executing a test case, the tester records its actual result and status.
+
+### Pass
+
+A test case is marked **Pass** when the actual result matches the expected result.
+
+### Fail
+
+A test case is marked **Fail** when the actual result does not match the expected result.
+
+### Example
+
+**Expected Result:** Login should be successful.
+
+**Actual Result:** Login was successful.
+
+**Status:** Pass
+
+If the login fails despite valid credentials:
+
+**Status:** Fail
+
+---
+
+# 8. Test Case Structure
+
+A standard test case can be represented as:
+
+| Field | Description |
+|---|---|
+| Test Case ID | Unique identifier for the test case |
+| Title | Short description of what is being tested |
+| Preconditions | Conditions required before testing |
+| Steps | Actions performed by the tester |
+| Test Data | Input values used during testing |
+| Expected Result | Result that should occur |
+| Actual Result | Result that actually occurred |
+| Status | Pass or Fail |
+
+---
+
+# 9. Example Test Case
+
+### Test Case: Login with Valid Credentials
+
+**Test Case ID:** TC_LOGIN_001
+
+**Title:** Verify login with valid username and password
+
+**Precondition:** User must have a registered account.
+
+**Steps:**
+1. Open the login page.
+2. Enter a valid username.
+3. Enter a valid password.
+4. Click the Login button.
+
+**Test Data:**
+- Username: `user@gmail.com`
+- Password: `Password123`
+
+**Expected Result:**  
+The user should be successfully logged in and redirected to the dashboard.
+
+**Actual Result:**  
+The user was successfully logged in and redirected to the dashboard.
+
+**Status:** Pass
+
+---
+
+# 10. Importance of Positive and Negative Testing
+
+Both positive and negative testing are important because they verify different aspects of application behavior.
+
+**Positive testing** verifies that valid operations work correctly.
+
+**Negative testing** verifies that invalid inputs are rejected and appropriate error messages are displayed.
+
+Together, they provide better test coverage and help improve the quality and reliability of the software.
+
+---
+
+# 11. Conclusion
+
+Writing effective test cases is an important part of software testing. Test cases should cover both **positive and negative scenarios** and should include clear test data, steps, expected results, actual results, and execution status.
+
+Techniques such as **Equivalence Partitioning (EP)** and **Boundary Value Analysis (BVA)** help testers design effective test cases with fewer but meaningful test conditions.
+
+Using these techniques improves test coverage and helps identify defects early in the software development process.
