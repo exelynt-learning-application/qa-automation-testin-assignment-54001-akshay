@@ -1,0 +1,231 @@
+# Map the STLC (Software Testing Life Cycle)
+
+## 1. Introduction
+
+STLC stands for **Software Testing Life Cycle**. It is a systematic process followed by the testing team to plan, design, execute, and complete software testing activities.
+
+The main phases of STLC are:
+
+1. Requirement Analysis
+2. Test Planning
+3. Test Case Development
+4. Test Environment Setup
+5. Test Execution
+6. Test Closure
+
+---
+
+## 2. STLC Flow Diagram
+
+```text
+              ┌──────────────────────┐
+              │  Requirement         │
+              │  Analysis            │
+              └──────────┬───────────┘
+                         ↓
+              ┌──────────────────────┐
+              │  Test Planning       │
+              └──────────┬───────────┘
+                         ↓
+              ┌──────────────────────┐
+              │ Test Case            │
+              │ Development          │
+              └──────────┬───────────┘
+                         ↓
+              ┌──────────────────────┐
+              │ Test Environment     │
+              │ Setup                │
+              └──────────┬───────────┘
+                         ↓
+              ┌──────────────────────┐
+              │ Test Execution       │
+              └──────────┬───────────┘
+                         ↓
+              ┌──────────────────────┐
+              │ Test Closure         │
+              └──────────────────────┘
+```
+
+---
+
+# 3. STLC Phases with Entry and Exit Criteria
+
+## Phase 1: Requirement Analysis
+
+In this phase, testers study and understand the software requirements. They identify which requirements can be tested and prepare the initial testing scope.
+
+### Activities
+
+- Understand business and functional requirements
+- Identify testable requirements
+- Identify testing scope
+- Identify required test data and tools
+- Clarify doubts with stakeholders
+
+### Entry Criteria
+
+- Requirements are available.
+- Business requirements are sufficiently clear.
+- Required documents are accessible.
+
+### Exit Criteria
+
+- Requirements are understood.
+- Testable requirements are identified.
+- Testing scope is finalized.
+- Requirement Traceability Matrix (RTM) can be started.
+
+---
+
+## Phase 2: Test Planning
+
+In this phase, the testing team creates a test plan and decides how testing will be performed.
+
+### Activities
+
+- Define testing strategy
+- Estimate testing effort
+- Identify resources
+- Select testing tools
+- Define testing schedule
+- Identify risks
+
+### Entry Criteria
+
+- Requirement analysis is completed.
+- Testing scope is known.
+- Project requirements are available.
+
+### Exit Criteria
+
+- Test plan is completed and approved.
+- Testing resources are identified.
+- Test schedule is finalized.
+- Testing tools and strategy are decided.
+
+---
+
+## Phase 3: Test Case Development
+
+In this phase, testers create test scenarios, test cases, and test data based on the requirements.
+
+### Activities
+
+- Create test scenarios
+- Write test cases
+- Prepare test data
+- Review test cases
+- Update RTM
+
+### Entry Criteria
+
+- Test plan is approved.
+- Requirements are understood.
+- Test scenarios can be identified.
+
+### Exit Criteria
+
+- Test cases are written.
+- Test cases are reviewed and approved.
+- Test data is prepared.
+- Requirements are mapped with test cases.
+
+---
+
+## Phase 4: Test Environment Setup
+
+In this phase, the required environment is prepared for testing.
+
+### Activities
+
+- Configure application/server
+- Install required software
+- Configure database
+- Set up testing tools
+- Verify environment availability
+
+### Entry Criteria
+
+- Test environment requirements are known.
+- Required software and hardware are available.
+- Test build is available.
+
+### Exit Criteria
+
+- Test environment is ready.
+- Environment smoke testing is completed successfully.
+- Testers can access the application.
+
+---
+
+## Phase 5: Test Execution
+
+In this phase, testers execute the prepared test cases and compare actual results with expected results.
+
+### Activities
+
+- Execute test cases
+- Record actual results
+- Mark test cases as Pass or Fail
+- Report defects
+- Retest fixed defects
+- Perform regression testing
+
+### Entry Criteria
+
+- Test environment is ready.
+- Test cases are approved.
+- Application build is available.
+- Required test data is available.
+
+### Exit Criteria
+
+- Planned test cases are executed.
+- Critical defects are resolved or accepted.
+- Retesting and regression testing are completed.
+- Test results are documented.
+
+---
+
+## Phase 6: Test Closure
+
+This is the final phase of STLC. The testing team evaluates the complete testing process and prepares the final test report.
+
+### Activities
+
+- Prepare test summary report
+- Verify testing objectives
+- Analyze defects
+- Document lessons learned
+- Collect testing metrics
+- Obtain closure approval
+
+### Entry Criteria
+
+- Test execution is completed.
+- Major defects are resolved or accepted.
+- Required testing activities are completed.
+
+### Exit Criteria
+
+- Test summary report is completed.
+- Testing metrics are documented.
+- Test closure is approved.
+- Testing artifacts are archived.
+
+---
+
+# 4. STLC Summary Table
+
+| STLC Phase | Main Activity | Entry Criteria | Exit Criteria |
+|---|---|---|---|
+| Requirement Analysis | Understand requirements | Requirements available | Requirements understood and testable |
+| Test Planning | Create test strategy and plan | Requirement analysis completed | Test plan approved |
+| Test Case Development | Write test cases and prepare data | Test plan approved | Test cases reviewed and approved |
+| Environment Setup | Prepare testing environment | Environment requirements known | Environment ready |
+| Test Execution | Execute tests and report defects | Build and environment ready | Testing completed and results documented |
+| Test Closure | Prepare final report | Execution completed | Closure report and approval completed |
+
+# 5. Conclusion
+
+STLC provides a structured approach to software testing. Each phase has specific activities, entry criteria, and exit criteria. Following STLC helps testers identify defects early, maintain proper documentation, and ensure that the software meets the required quality standards.
