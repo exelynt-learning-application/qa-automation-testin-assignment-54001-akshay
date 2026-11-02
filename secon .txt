@@ -1,0 +1,60 @@
+# Assignment: Decision Table for Login Functionality
+
+## 1. Objective
+
+The objective of this assignment is to create a decision table for a login system and write test cases for all possible combinations of username and password.
+
+A user can log in successfully only when both the username and password are correct. If either one or both are incorrect, access must be denied.
+
+## 2. Conditions and Actions
+
+Conditions:
+
+1. Username is correct.
+2. Password is correct.
+
+Actions:
+
+1. Allow login.
+2. Deny login.
+
+## 3. Decision Table
+
+| Conditions / Rules  | Rule 1 | Rule 2 | Rule 3 | Rule 4 |
+| ------------------- | ------ | ------ | ------ | ------ |
+| Username is correct | Yes    | Yes    | No     | No     |
+| Password is correct | Yes    | No     | Yes    | No     |
+| Actions             |        |        |        |        |
+| Allow login         | Yes    | No     | No     | No     |
+| Deny login          | No     | Yes    | Yes    | Yes    |
+
+### Explanation of the rules
+
+- Rule 1: Both username and password are correct, so login is successful.
+- Rule 2: Username is correct, but password is incorrect, so login is denied.
+- Rule 3: Username is incorrect, but password is correct, so login is denied.
+- Rule 4: Both username and password are incorrect, so login is denied.
+
+## 4. Test Cases
+
+| Test Case ID | Test Scenario                         | Test Data (Username / Password) | Expected Result                                          | Status       |
+| ------------ | ------------------------------------- | ------------------------------- | -------------------------------------------------------- | ------------ |
+| TC_LOGIN_001 | Valid username and valid password     | `validuser` / `Valid@123`       | Login successful; user is redirected to the home page.   | Not Executed |
+| TC_LOGIN_002 | Valid username and invalid password   | `validuser` / `Wrong@123`       | Login denied; an appropriate error message is displayed. | Not Executed |
+| TC_LOGIN_003 | Invalid username and valid password   | `wronguser` / `Valid@123`       | Login denied; an appropriate error message is displayed. | Not Executed |
+| TC_LOGIN_004 | Invalid username and invalid password | `wronguser` / `Wrong@123`       | Login denied; an appropriate error message is displayed. | Not Executed |
+
+## 5. Test Execution Steps
+
+1. Open the login page.
+2. Enter the username according to the test case.
+3. Enter the password according to the test case.
+4. Click the Login button.
+5. Verify the actual result against the expected result.
+6. Update the status to Pass or Fail after execution.
+
+## 6. Conclusion
+
+The decision table covers all four possible combinations of valid and invalid usernames and passwords. Login is permitted only when both credentials are correct. In the other three combinations, access must be denied.
+
+This assignment demonstrates how decision table testing helps identify conditions, actions, and test cases systematically.
