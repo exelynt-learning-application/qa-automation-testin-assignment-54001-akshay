@@ -1,0 +1,167 @@
+# Software Testing Assignment: Registration Form Testing Techniques
+
+## 1. Introduction
+
+The objective of this assignment is to test a registration form using three software testing techniques:
+
+1. Equivalence Partitioning (EP) – Dividing input data into valid and invalid groups.
+2. Boundary Value Analysis (BVA) – Testing values at, below, and above the allowed limits.
+3. Decision Table Testing and State Transition Testing – Testing login conditions and account locking after three failed login attempts.
+
+For this assignment, we will consider a sample registration form containing Name, Age, Email, Password, and Phone Number fields.
+
+## 2. Registration Form Requirements
+
+The following sample validation rules will be used. Actual rules may vary depending on the application.
+
+| Field        | Validation Rules                                                                    |
+| ------------ | ----------------------------------------------------------------------------------- |
+| Name         | Required; 2–50 characters                                                           |
+| Age          | Required; 18–60 years                                                               |
+| Email        | Required; valid email format                                                        |
+| Password     | Required; 8–20 characters, with uppercase, lowercase, number, and special character |
+| Phone Number | Required; exactly 10 digits                                                         |
+
+## 3. Equivalence Partitioning (EP)
+
+Equivalence Partitioning divides input data into groups where values are expected to behave similarly. One representative value from each group can be tested.
+
+| Field    | Valid Equivalence Class                  | Invalid Equivalence Class                                    |
+| -------- | ---------------------------------------- | ------------------------------------------------------------ |
+| Name     | 2–50 characters                          | Empty, fewer than 2 characters, more than 50 characters      |
+| Age      | 18–60                                    | Below 18, above 60, non-numeric, empty                       |
+| Email    | Correct email format                     | Missing `@`, missing domain, empty                           |
+| Password | 8–20 characters meeting complexity rules | Too short, too long, missing required character types, empty |
+| Phone    | Exactly 10 digits                        | Fewer than 10 digits, more than 10 digits, letters, empty    |
+
+### Example
+
+For the Age field:
+
+- Valid class: 25
+- Invalid class: 16
+- Invalid class: 65
+- Invalid class: `abc`
+- Invalid class: blank
+
+Each class represents a different type of input that should be validated.
+
+## 4. Boundary Value Analysis (BVA)
+
+Boundary Value Analysis tests values at the minimum and maximum limits, along with values immediately outside those limits.
+
+| Field           | Minimum               | Below Minimum  | At Minimum   | At Maximum    | Above Maximum  |
+| --------------- | --------------------- | -------------- | ------------ | ------------- | -------------- |
+| Name length     | 2                     | 1 character    | 2 characters | 50 characters | 51 characters  |
+| Age             | 18                    | 17             | 18           | 60            | 61             |
+| Email           | Valid format required | Invalid format | Valid email  | Valid email   | Invalid format |
+| Password length | 8                     | 7 characters   | 8 characters | 20 characters | 21 characters  |
+| Phone digits    | 10                    | 9 digits       | 10 digits    | 10 digits     | 11 digits      |
+
+Note: Email addresses do not have a simple single minimum/maximum boundary for basic format validation. They should also be tested against the application's documented length and format rules.
+
+### Expected Results
+
+- Values within the allowed limits should be accepted if all other validations pass.
+- Values below the minimum or above the maximum should be rejected.
+- Appropriate validation messages should be displayed for invalid inputs.
+
+## 5. Decision Table for Login Functionality
+
+A login is successful only when both the username and password are correct.
+
+| Conditions / Rules | Rule 1 | Rule 2 | Rule 3 | Rule 4 |
+| ------------------ | ------ | ------ | ------ | ------ |
+| Username correct   | Yes    | Yes    | No     | No     |
+| Password correct   | Yes    | No     | Yes    | No     |
+| Allow login        | Yes    | No     | No     | No     |
+| Deny login         | No     | Yes    | Yes    | Yes    |
+
+### Explanation
+
+- Rule 1: Both credentials are correct; login succeeds.
+- Rule 2: Username is correct, but password is incorrect; login is denied.
+- Rule 3: Username is incorrect, but password is correct; login is denied.
+- Rule 4: Both credentials are incorrect; login is denied.
+
+## 6. State Transition Diagram: Account Locked After 3 Failed Login Attempts
+
+The account is locked after three consecutive failed login attempts. A successful login resets the failed-attempt counter. This is the sample behavior assumed for the assignment.
+
+State 1: Active
+
+Account can log in
+
+Failed attempt 1
+
+Counter = 1
+
+Failed attempt 2
+
+Counter = 2
+
+Failed attempt 3
+
+Counter = 3
+
+State 2: Locked
+
+Login denied until unlock or reset
+
+### State Transition Rules
+
+| Current State | Event                     | Next State | Expected Action                             |
+| ------------- | ------------------------- | ---------- | ------------------------------------------- |
+| Active        | First failed login        | Active     | Display error; counter = 1                  |
+| Active        | Second failed login       | Active     | Display error; counter = 2                  |
+| Active        | Third failed login        | Locked     | Lock account and display message            |
+| Active        | Successful login          | Active     | Allow access and reset counter              |
+| Locked        | Login attempt             | Locked     | Deny access and show account-locked message |
+| Locked        | Authorized account unlock | Active     | Allow login attempts again                  |
+
+## 7. Test Cases
+
+The following 25 test cases are derived from Equivalence Partitioning, Boundary Value Analysis, Decision Table Testing, and State Transition Testing.
+
+| Test Case ID | Technique        | Test Scenario / Test Data                        | Expected Result                        | Status       |
+| ------------ | ---------------- | ------------------------------------------------ | -------------------------------------- | ------------ |
+| TC-001       | EP               | Valid name: `Akshay`                             | Name accepted                          | Not Executed |
+| TC-002       | EP               | Name with 1 character: `A`                       | Validation error displayed             | Not Executed |
+| TC-003       | BVA              | Name with exactly 2 characters                   | Name accepted                          | Not Executed |
+| TC-004       | BVA              | Name with 51 characters                          | Name rejected                          | Not Executed |
+| TC-005       | EP               | Age: `25`                                        | Age accepted                           | Not Executed |
+| TC-006       | EP               | Age: `16`                                        | Age rejected                           | Not Executed |
+| TC-007       | BVA              | Age: `17`                                        | Age rejected                           | Not Executed |
+| TC-008       | BVA              | Age: `18`                                        | Age accepted                           | Not Executed |
+| TC-009       | BVA              | Age: `60`                                        | Age accepted                           | Not Executed |
+| TC-010       | BVA              | Age: `61`                                        | Age rejected                           | Not Executed |
+| TC-011       | EP               | Email: `user@example.com`                        | Email accepted                         | Not Executed |
+| TC-012       | EP               | Email: `userexample.com`                         | Email rejected                         | Not Executed |
+| TC-013       | EP               | Email field left blank                           | Required-field error displayed         | Not Executed |
+| TC-014       | EP               | Password: `Test@123`                             | Password accepted                      | Not Executed |
+| TC-015       | BVA              | Password with 7 characters                       | Password rejected                      | Not Executed |
+| TC-016       | BVA              | Password with exactly 8 valid characters         | Password accepted                      | Not Executed |
+| TC-017       | BVA              | Password with 21 characters                      | Password rejected                      | Not Executed |
+| TC-018       | EP               | Phone: `9876543210`                              | Phone accepted                         | Not Executed |
+| TC-019       | BVA              | Phone with 9 digits                              | Phone rejected                         | Not Executed |
+| TC-020       | BVA              | Phone with 11 digits                             | Phone rejected                         | Not Executed |
+| TC-021       | Decision Table   | Correct username and correct password            | Login successful                       | Not Executed |
+| TC-022       | Decision Table   | Correct username and incorrect password          | Login denied                           | Not Executed |
+| TC-023       | Decision Table   | Incorrect username and correct password          | Login denied                           | Not Executed |
+| TC-024       | State Transition | Enter incorrect password three consecutive times | Account becomes locked                 | Not Executed |
+| TC-025       | State Transition | Attempt login after account is locked            | Login denied; locked message displayed | Not Executed |
+
+## 8. Test Execution Procedure
+
+1. Open the registration or login page on the selected demo website.
+2. Enter the test data listed in each test case.
+3. Submit the form.
+4. Compare the actual result with the expected result.
+5. Mark the status as Pass if the behavior matches, or Fail if it does not.
+6. Record any defect and repeat the test after the defect is fixed.
+
+## 9. Conclusion
+
+This assignment demonstrates how Equivalence Partitioning and Boundary Value Analysis reduce unnecessary test combinations while checking valid and invalid inputs. Decision Table Testing verifies all four username/password combinations, while State Transition Testing verifies that an account becomes locked after three failed login attempts.
+
+Together, these techniques provide structured test coverage for registration, login validation, and account security.
