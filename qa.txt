@@ -1,0 +1,198 @@
+
+Student Name: ______________________________ Course / Batch: ______________________________
+Date: ______________________________
+1. Objective
+The objective of this document is to verify that Login and Registration work correctly, validate user input, show useful error messages, and protect user accounts. Positive and negative scenarios are
+included.
+2. Scope and Assumptions
+• Login authenticates registered users using email and password.
+• Registration creates a new account using required user details.
+• All email addresses and passwords are dummy test data. Use a test environment only.
+• Follow the application's specified password rules, field limits, verification steps, and terms requirements. Cases marked 'if available' or 'if enabled' apply only when that feature exists.
+• All cases are marked Not Executed because they have not been run against an actual application.
+3. Test Case Summary
+Total test cases: 25 Login: 12 Registration: 13
+4. Detailed Test Cases
+Login Test Cases
+TC-LR-001 — Verify login with valid credentials
+Feature / Type Login / Positive
+Steps 1. Open the login page.
+2. Enter a registered email address.
+3. Enter the correct password.
+4. Click Login.
+Test Data Email: akshay.test@example.com
+Password: Test@123
+Expected Result User logs in successfully and is redirected to the home page/dashboard.
+Status Not Executed
+TC-LR-002 — Verify login with an incorrect password
+Feature / Type Login / Negative
+Login and Registration Test Cases | Page 2
+Steps 1. Open the login page.
+2. Enter a registered email address.
+3. Enter an incorrect password.
+4. Click Login.
+Test Data Email: akshay.test@example.com
+Password: Wrong@123
+Expected Result Login is rejected and a clear error message is displayed. The user remains unauthenticated.
+Status Not Executed
+TC-LR-003 — Verify login with an unregistered email
+Feature / Type Login / Negative
+Steps 1. Open the login page.
+2. Enter an email address that is not registered.
+3. Enter any password.
+4. Click Login.
+Test Data Email: unknown.user@example.com
+Password: Test@123
+Expected Result Login is rejected with an appropriate error message; no account session is created.
+Status Not Executed
+TC-LR-004 — Verify login when the email field is empty
+Feature / Type Login / Negative
+Steps 1. Open the login page.
+2. Leave the email field blank.
+3. Enter a password.
+4. Click Login.
+Test Data Email: blank
+Password: Test@123
+Expected Result Required-field validation is shown for email and login is not completed.
+Status Not Executed
+TC-LR-005 — Verify login when the password field is empty
+Feature / Type Login / Negative
+Steps 1. Open the login page.
+2. Enter a registered email address.
+3. Leave the password field blank.
+4. Click Login.
+Test Data Email: akshay.test@example.com
+Password: blank
+Expected Result Required-field validation is shown for password and login is not completed.
+Status Not Executed
+Login and Registration Test Cases | Page 3
+TC-LR-006 — Verify login when both fields are empty
+Feature / Type Login / Negative
+Steps 1. Open the login page.
+2. Leave email and password blank.
+3. Click Login.
+Test Data Email: blank
+Password: blank
+Expected Result Validation messages are displayed for both required fields; no login occurs.
+Status Not Executed
+TC-LR-007 — Verify email format validation
+Feature / Type Login / Negative
+Steps 1. Open the login page.
+2. Enter an invalid email format.
+3. Enter any password.
+4. Click Login.
+Test Data Email: akshay.test
+Password: Test@123
+Expected Result The email format is rejected with a validation message and login is not completed.
+Status Not Executed
+TC-LR-008 — Verify password is masked
+Feature / Type Login / Positive
+Steps 1. Open the login page.
+2. Enter a password in the password field.
+3. Observe the displayed characters.
+Test Data Password: Test@123
+Expected Result Password characters are hidden/masked by default.
+Status Not Executed
+TC-LR-009 — Verify password visibility toggle, if available
+Feature / Type Login / Positive
+Steps 1. Open the login page.
+2. Enter a password.
+3. Click the show/hide password icon.
+Test Data Password: Test@123
+Expected Result Password visibility changes when the toggle is clicked; the entered password value remains unchanged.
+Status Not Executed
+TC-LR-010 — Verify leading/trailing spaces in email are handled
+Login and Registration Test Cases | Page 6
+Steps 1. Open the registration page.
+2. Leave email blank and complete the other required fields.
+3. Click Register/Sign Up.
+Test Data Name: Akshay Test
+Email: blank
+Password: Test@123
+Confirm password: Test@123
+Expected Result Required-field validation is displayed for email and registration is blocked.
+Status Not Executed
+TC-LR-018 — Verify registration when password is empty
+Feature / Type Registration / Negative
+Steps 1. Open the registration page.
+2. Enter valid name and email.
+3. Leave password blank and complete remaining fields as possible.
+4. Click Register/Sign Up.
+Test Data Name: Akshay Test
+Email: new.user03@example.com
+Password: blank
+Expected Result Required-field validation is displayed for password and registration is blocked.
+Status Not Executed
+TC-LR-019 — Verify password confirmation mismatch
+Feature / Type Registration / Negative
+Steps 1. Open the registration page.
+2. Enter valid name and email.
+3. Enter different values in password and confirm password.
+4. Click Register/Sign Up.
+Test Data Password: Test@123
+Confirm password: Test@124
+Expected Result A mismatch message is displayed and registration is not completed.
+Status Not Executed
+TC-LR-020 — Verify password minimum-length validation
+Feature / Type Registration / Negative
+Steps 1. Open the registration page.
+2. Enter valid name and email.
+3. Enter a password shorter than the stated minimum.
+4. Submit the form.
+Test Data Password: Ab1@
+Confirm password: Ab1@
+Expected Result The password is rejected with a message explaining the configured password requirement.
+Login and Registration Test Cases | Page 7
+Status Not Executed
+TC-LR-021 — Verify password complexity requirements
+Feature / Type Registration / Negative
+Steps 1. Open the registration page.
+2. Enter valid name and email.
+3. Enter a password that does not meet the application's complexity rules.
+4. Submit the form.
+Test Data Password: password
+Confirm password: password
+Expected Result The application explains which password rule is not met and does not create the account.
+Status Not Executed
+TC-LR-022 — Verify required terms and conditions checkbox
+Feature / Type Registration / Negative
+Steps 1. Open the registration page.
+2. Enter all valid required details.
+3. Leave the terms checkbox unchecked, if it is required.
+4. Click Register/Sign Up.
+Test Data Valid details; terms: unchecked
+Expected Result Registration is blocked and the user is asked to accept the required terms.
+Status Not Executed
+TC-LR-023 — Verify registration with spaces-only input in required fields
+Feature / Type Registration / Negative
+Steps 1. Open the registration page.
+2. Enter only spaces in a required text field such as name.
+3. Complete other fields and submit.
+Test Data Name: three spaces
+Email: new.user04@example.com
+Password: Test@123
+Expected Result Spaces-only input is treated as empty and validation is shown; account is not created.
+Status Not Executed
+TC-LR-024 — Verify email verification flow, if enabled
+Feature / Type Registration / Positive
+Steps 1. Register with a valid new email address.
+2. Open the verification email or use the test verification link/code.
+3. Complete verification.
+Test Data Email: verify.user@example.com
+Verification code/link: valid test value
+Login and Registration Test Cases | Page 8
+Expected Result Email is verified and the account status updates according to the application's requirements.
+Status Not Executed
+TC-LR-025 — Verify registration form prevents duplicate submission
+Feature / Type Registration / Negative
+Steps 1. Fill the registration form with valid details.
+2. Click Register repeatedly or double-click quickly.
+3. Check the resulting account state.
+Test Data Email: new.user05@example.com
+Valid registration details
+Expected Result Only one account/registration request is created; the interface prevents unintended duplicate submissions.
+Status Not Executed
+5. Execution Result
+All test cases are currently marked Not Executed. After testing the application, update each status to Pass or Fail and record actual results or defects where applicable.
+6. Conclusion
+This test suite covers common Login and Registration workflows, including successful login and registration, empty fields, invalid email formats, incorrect credentials, password validation, duplicate
